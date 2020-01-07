@@ -1,0 +1,45 @@
+<header class="header">
+  <div class="container">
+    <div class="user-nav d-flex justify-content-end">
+      <nav>
+        <%= link_to 'Home', root_path %>
+        <%= link_to 'Post Dish', new_dish_path %>
+        <% if  user_signed_in? %>
+          <%= link_to "SignOut", destroy_user_session_path, method: :delete, class: "btn-create" %>
+          <% else %>
+            <%= link_to 'SignIn', new_user_session_path, class: 'sign-btn' %>
+        <% end %>
+        <% if !user_signed_in? %>
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'sign-btn' %>
+        <% end %>
+      </nav>
+    </div>
+    <nav class="navbar header-main-nav navbar-expand-lg">
+      <%= link_to root_path,class: 'navbar-brand' do %>
+        <span id="title">FORKLY</span> 
+      <% end %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="form-inline search-form">
+          <%= search_form_for @search do |f| %>
+            <div class="row">
+                <div class="input-group search-group">
+                  <span class="fa fa-search input-search-icon"></span>
+                  <%= f.text_field :name_cont, class: "form-control",autofocus: true, placeholder: "Search Recipes",id: "search-field",data:{autocomplete_source:dishes_autocomplete_path(:category=> 6)} %>
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="fa fa-times times-icon"></i>
+                    </span>
+                  </div>
+                </div>
+                <%= f.collection_select :category_id_eq,Category.all,:id,:name,{prompt: "Course"},{class: 'form-control',id: "category_select"} %>
+              <!--<%= f.submit "Search", class: "btn search-btn" %>-->
+              <%= button_tag( :class => "search-btn") do %>
+                <i class="fa fa-search"></i>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>  
+    </nav>
+  </div>
+</header>

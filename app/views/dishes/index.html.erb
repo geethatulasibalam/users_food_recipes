@@ -1,0 +1,32 @@
+<div class="header-container">
+  <%= render :partial=>"header" %>
+</div>
+<div class="header_image">
+	<%= render :partial=>"header_image" %>
+</div>
+<div class="container">
+	<div class="row sorting">
+	 	<div class="col-md-2 offset-10">
+			<%= form_with model: @dish, local: true do |form| %>
+				<%= select_tag("dishes_page", options_for_select([["Most Recent","recent"],["Rating","rating"]]),{:name => "dishes_per_page", :class=>"form-control select_style", :id=>"sort", remote: true} ) %>
+			<% end %>
+		</div>  
+	</div>
+	<% unless flash.empty? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        <% type = f[0].to_s %>
+        toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+    </script>
+	<% end %>
+  <div class="dishes">
+    <%= render :partial=> "dishes",:locals=>{dishes:@dishes} %>
+	</div>
+  <%= will_paginate @dishes %>
+	<div class="loading-spinner"></div>
+</div>
+ <script type="text/javascript">
+ 	myFunction();
+ 	Ratings();
+ </script>

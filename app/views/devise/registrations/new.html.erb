@@ -1,0 +1,120 @@
+<div class="auth-container">
+  <%if resource.errors.any? %>
+    <script type="text/javascript">
+      <% resource.errors.full_messages.each do |message| %>
+        toastr.error('<%= message %>')  
+      <% end %>
+    </script>
+  <% end %>
+  <div class="col-md-5 offset-6 signup-container">  
+    <div class="d-flex justify-content-center h-100">
+      <% if resource.errors.any? %>
+      <div class="card errors-card">
+      <% else %>
+      <div class="card sign-card">
+      <% end %>
+        <div class="card-header signcard-header center">
+          <h3>Sign Up</h3>
+          <div class="d-flex justify-content-end social_icon">
+            <%- if devise_mapping.omniauthable? %>
+              <%= link_to omniauth_authorize_path(resource_name, :facebook) do %> 
+                  <span><i class="fa fa-facebook-square"></i></span>
+              <% end %>
+              <%= link_to omniauth_authorize_path(resource_name,:google_oauth2) do %>
+                <span><i class="fa fa-google-plus-square"></i></span>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="card-body sign-card-body">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <div class="row">
+              <div class="input-field input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-pencil"></i></span>
+                </div>
+                <%= f.text_field :name,autofocus:true,autocomplete:"name",placeholder: "Name",class: 'form-control' %>
+              </div>
+              <div class="error-label"></div>
+            </div>
+            <div class="row">
+              <div class="input-field input-group form-group">
+                 <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+                <%= f.email_field :email,autocomplete: "email",placeholder: "Email",class: "form-control"  %>
+              </div>
+              <div class="error-label"></div>
+            </div>
+            <div class="row">
+              <div class="input-field input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-key"></i></span>
+                </div>
+                <% if @minimum_password_length %>
+                <% end %> 
+                <%= f.password_field :password, autocomplete: "new-password",placeholder:"Password",class: 'form-control'  %> 
+              </div>
+              <div class="error-label"></div>
+            </div>
+            <div class="row">
+               <div class="input-field input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-key"></i></span>
+                </div>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password",placeholder:"Confirm Password",class: 'form-control' %>
+              </div> 
+              <div class="error-label"></div>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Sign Up",class: "btn float-right login_btn" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="card-footer links-footer">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+ $("#new_user").validate({
+    rules:{
+      "user[name]":{
+        required:true,
+        maxlength:20
+      },
+      "user[email]":{
+        required:true,
+      },
+      "user[password]":{
+        required:true
+      },
+      "user[password_confirmation]":{
+        required:true
+      }
+    },
+    messages:{
+      "user[name]":{
+        required:"Name Is Required"
+      },
+      "user[email]":{
+        required:"Email Is Required"
+      },
+      "user[password]":{
+        required:"Password Is Required"
+      },
+      "user[password_confirmation]":{
+        required:"Confirm_password Is Required"
+      },
+    },
+    errorElement : 'span',
+    errorLabelContainer: '.errorTxt',
+    errorPlacement: function(error,element) {
+      error.appendTo(element.parent().next());
+    },
+  })
+  $('.auth-container').css({ height: $(window).innerHeight() });
+</script>

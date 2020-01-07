@@ -1,0 +1,11 @@
+I"–(function() {
+  $(document).ready(function() {
+    $('#btn').click(function() {
+      return alert('hello');
+    });
+  });
+
+  return;
+
+}).call(this);
+:ET

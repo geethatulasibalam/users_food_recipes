@@ -1,0 +1,9 @@
+<%= form_for @dish do |f| %>
+	<%= f.fields_for :reviews do |review| %>
+		<%= review.label :rating %>
+		<%= review.text_field :rating %>
+		<%= review.label :review %>
+		<%= review.text_area :review %>
+	<% end %>
+	<%= f.submit 'Save'%>
+<% end %>

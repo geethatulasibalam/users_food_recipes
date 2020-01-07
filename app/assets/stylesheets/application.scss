@@ -1,0 +1,19 @@
+@import "bootstrap";
+@import "home";
+@import "dishes";
+@import "reviews";
+@import "font-awesome";
+@import "social-share-button";
+@import "rails-social-share-button";
+@import "jquery-ui";
+@import "font-awesome";
+@import "toastr";
+$size: 28px;
+
+.social-share-button {
+  .ssb-icon {
+    background-size: $size $size;
+    height: $size;
+    width: $size;
+  }
+}

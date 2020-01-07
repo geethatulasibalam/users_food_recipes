@@ -1,0 +1,101 @@
+<div>
+  <%= render partial: "header" %>
+</div>
+<!-- <div class="breadcrumbs-container">
+  <%= render_breadcrumbs :separator => ' / ' %>
+</div>
+<hr width="100%"> -->
+<% unless flash.empty? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        <% type = f[0].to_s %>
+        toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+    </script>
+<% end %>
+<div class="dish-container">
+  <div class="container">
+  	<div class="row">
+  		<div class="col-md-6 singledish-name">
+  		 	<%= @dish.name %>
+  		</div>
+  		<div class="col-md-6 d-flex justify-content-end">
+  		 	<%= social_share_button_tag(@dish.name, :image => "https://www.indianhealthyrecipes.com/wp-content/uploads/2014/11/chicken-curry-recipe.jpg",:desc => @dish.description,"data-linkedin-description"=>"my site content") %> 
+  		</div>
+  	</div>
+  	<hr width="100%">
+  	<div class="row">
+  		<div class="col-md-6">
+    		<%if @dish.images.length > 0 %>
+          <%= image_tag @dish.images[0].image.to_s,class: 'singledish-image' %>
+        <% else %>
+          <%= image_tag "home-2.jpeg",class: 'singledish-image'%>
+        <% end %>
+  		</div>
+      <div class="col-md-6 singledish-details">
+        <div class="row">
+          <div class="col-md-8">
+            <span class="dish-rating" data-score="<%=  @dish.average_stars %>">
+            
+            </span>
+            <span><%= @dish.reviews.length %> Reviews</span>
+          </div>
+          <div class="col-md-4 d-flex justify-content-end">
+            &#8377; <%= @dish.price %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 singledish-description">
+            <%= @dish.description %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <span class="recipe-by">Recipe By:</span>
+            <span class="user-recipe"><%= @dish.user.name %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <% if user_signed_in? %>
+              <%= link_to 'Post Review',new_dish_review_path(@dish),remote: true,class: 'btn success-btn' %>
+            <% else %>
+            <span class="tool-tip" data-toggle="tooltip" data-placement="bottom" title="Sign in to post a review">
+              <%= button_to "Post Review",{},class: 'btn review-disable-btn',disabled: true %>
+            </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+  	</div>
+  </div>
+</div>
+<hr width="100%">
+<div class="container">
+  <% if @reviews.length > 0 %>
+  	<div class="review-heading">
+  		Reviews
+  	</div>
+    <div class="reviews-container">
+    	<div class="row">
+      <% @reviews.each do |r| %>
+        <div class="col-md-6 reviews">
+          <span class="username"><%= r.user.name if r.user.name%></span>
+          <span class="dish-rating" data-score="<%= r.rating %>"></span>
+          <div class="review">
+            <%= r.review %>
+          </div>
+        </div>
+        <hr>
+      <% end %>
+     	</div>
+    </div>
+  <% end %>
+</div>
+<script type="text/javascript">
+  myFunction();
+  Ratings();
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+  });
+</script>

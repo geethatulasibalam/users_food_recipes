@@ -1,0 +1,34 @@
+<% if @dishes.length>0 %>
+	<div class="row dish-row">
+		<% dishes.each do |dish| %>
+			<div class="col-md-4">
+				<%= link_to dish_path(dish)  do %>
+				 	<div class="card dish-card">
+							<%if dish.images.length > 0 %>
+								<%= image_tag dish.images[0].image.to_s, class: 'dish-image' %>
+							<% else %>
+								<%= image_tag "home-2.jpeg", class: 'dish-image' %>
+							<% end %>
+					  <div class="row dish-data">
+					  <div class="col-md-7 col-xs-6 dish-name"><%= dish.name %></div>
+					  <div class="col-md-5 col-xs-6">
+					  	<div class="dish-price d-flex justify-content-end"><%= dish.price %></div>
+					  	<div class="dish-rating" data-score='<%= dish.average_stars %>'></div>
+					  </div>
+					  </div>
+						<div class="card-body">
+							<div class="card-text dish-description homepage-dish-description">
+								<%= dish.description %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+<% else %>
+	<div id="no-data">
+		<p>Sorry your search returned no results.</p>
+		<p>Please revise your search criteria and try again.</p>
+	</div>
+<% end %> 

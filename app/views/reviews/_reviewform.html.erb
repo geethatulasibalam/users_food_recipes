@@ -1,0 +1,54 @@
+<div class="modal fade" tabindex="-1" id="form-modal" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+			<div class="modal-header review-modal-header">
+				<div class="dish-icon">
+	        <span class="edit-icon"><i class="fa fa-edit"></i></span>
+				</div>
+				<div class="review-dish-details">
+			 		<span id="ratetext">Rate & Review</span><br/>
+			 	 	<p class="review-dish-name"><%= @dish.name %></p> 
+				</div>
+			<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+		</div>
+		<div class="modal-body">
+			<div class="review-user">
+				<div class="review-user-icon">
+					<%= image_tag "userprofile.jpg",class: 'user-icon-image' %>
+				</div>
+				<div class="review-user-name">
+					<span class="user-name"><%= current_user.name %></span><br/>
+					<p class="review-text">Your review will be posted publicly on web.</p>
+				</div>
+			</div>
+			<div class="review-form">
+				<%= form_for @review, url: dish_reviews_path  do |f| %>
+					<div id='rating-form' class='form-group'>
+						<!-- <label class="rating">Rating</label> -->
+					</div>
+					<div class="row form-group">
+						<!-- <div class="col-md-2">
+							<%=f.label :review %>
+						</div> -->
+						<div class="review col-md-12">
+							<%=f.text_field :review,rows:2,maxlength:200,placeholder:'Describe your experience',class: 'form-control',validate: { presence: true }%>
+						<div class="error-text"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 d-flex justify-content-end">
+							<%= link_to 'CANCEL',{:controller => "dishes", :action => "show",:id=>params[:dish_id]},class: 'btn review-cancel-btn' %>
+							<%=f.submit 'POST',class: 'btn review-btns'	%>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		</div>
+	</div> 
+</div>
+<script type="text/javascript">
+	Ratings();
+</script>

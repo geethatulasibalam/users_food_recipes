@@ -1,0 +1,132 @@
+.review-form-container{
+	margin:10% auto;
+	width: 45%;
+	background-color:#C5D5E3;
+	box-shadow: 4px 3px rgba(0,0,0,0.04);
+	padding: 30px;
+	border-radius: 4px;
+	border:1px solid #efefef;
+}
+.rating{
+	margin-right:5%;
+}
+.heading{
+	/*background-color:#66A6B6;*/
+	color:black;
+	text-align: center;
+	padding: 3px;
+	font-stretch: 3px;
+	font-family: cursive;
+	font-weight: 600;
+	font-style: bold;
+	border-radius: 2px;
+	/*border-bottom: 4px solid #CAC531;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 3px;*/
+}
+.review-form{
+	margin-top: 20px;
+}
+.btn4,.btn3 {
+  background-color: #4CAF50;
+  border: 3px solid #4CAF50;
+  color: white;
+  text-transform: uppercase;
+  height: auto;
+  width: inherit;
+  text-shadow: 4px 4px 3px rgba(77, 77, 77, 0.5);
+  box-shadow: 14px 14px rgba(77, 77, 77, 0.1);
+  cursor: pointer;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.btn4:hover {
+  box-shadow: 14px 14px rgba(77, 77, 77, 0.5);
+}
+
+.btn4:active {
+  transform: translate3d(7px, 7px, 0px);
+  box-shadow: 7px 7px rgba(77, 77, 77, 0.5);
+}
+.btn3{
+	background-color: #FFC300;
+	border: 3px solid #FFC300;
+	text-decoration: none;
+}
+.btn3:hover{
+	text-decoration: none;
+	color: white;
+}
+.review-modal-header{
+	background-color: blue;
+	color: white;
+	font-family: Alegreya;
+}
+#ratetext{
+	font-weight: bold;
+}
+.review-user{
+	display: flex;
+}
+.dish-icon,.review-user-icon{
+	width: 15%;
+}
+.review-dish-details,.review-user-name{
+	width: 85%;
+}
+.dish-icon-image{
+	width: 40px;
+	height: 40px;
+}
+.user-icon-image{
+	width: 50px;
+	height: 50px;
+}
+.user-icon-image{
+	border-radius: 50%;
+}
+.review-form{
+	margin-left: 15%;
+}
+.review input{
+	/*border:none;*/
+	border-left:none;
+	border-right: none;
+	border-top:none;
+	border-bottom-width: 1px solid gray;
+}
+.review-btns{
+	background-color: white;
+	color: blue;
+}
+.review-cancel-btn:focus{
+  box-shadow:none !important;
+}
+.review-text{
+	color: #495057;
+}
+.edit-icon{
+	font-size: 20px;
+}
+.tool-tip {
+  display: inline-block;
+}
+.tool-tip [disabled] {
+  pointer-events: none;
+  cursor:not-allowed;
+}
+.user-name{
+	font-weight: bold;
+}
+.review-text{
+	color: #ABAAA8; 
+}
+.review input::placeholder{
+	color:#CDCDCC;
+}
+.review-dish-name,.review-text{
+	margin-top:10px;
+}
+.review-dish-name{
+	font-size: 14px;
+}

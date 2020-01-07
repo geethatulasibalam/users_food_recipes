@@ -1,0 +1,3 @@
+$(".dishes").html("<%= escape_javascript render(:partial => 'dishes', :locals => { :dishes => @dishes }) %>");
+Ratings();
+$('.pagination').remove();

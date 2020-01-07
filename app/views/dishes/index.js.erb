@@ -1,0 +1,9 @@
+$(".dishes").append("<%= escape_javascript render(:partial => 'dishes', :locals => { :dishes => @dishes }) %>");
+<% if @dishes.next_page %>
+	$('.pagination').replaceWith("<%= j will_paginate(@dishes)%>");
+<% else %>
+	$('.pagination').remove();
+	$('.loading-spinner').hide();
+<% end %>
+<% sleep 1 %>
+Ratings();

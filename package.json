@@ -1,0 +1,7 @@
+{
+  "name": "users_food_app",
+  "private": true,
+  "dependencies": {
+    "spinkit": "^2.0.1"
+  }
+}

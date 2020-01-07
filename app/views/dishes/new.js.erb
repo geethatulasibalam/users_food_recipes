@@ -1,0 +1,7 @@
+$(document).ready(function(){
+	$("body").before("<%= escape_javascript render(:partial=>'form')%>");
+	$("#form-modal").modal();
+	$('#form-modal').on('hidden.bs.modal', function () {
+  	$('#form-modal').trigger("reset");
+	})
+})

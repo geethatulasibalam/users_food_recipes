@@ -1,0 +1,27 @@
+<header class="header header-two">
+  <div class="container">
+    <nav class="navbar header-main-nav-two navbar-expand-lg">
+      <%= link_to root_path,class: 'navbar-brand home-title' do %>
+        <span id="title">FORKLY</span> 
+      <% end %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto navbar-links">
+         <!-- <li class="nav-item"><%= link_to 'Home', root_path,class: 'nav-link' %></li> -->
+          <!-- <li class="nav-item"><%= link_to 'Post Dish', new_dish_path,class: 'nav-link' %></li> -->
+        <li class="nav-item">
+            <% if  user_signed_in? %>
+              <%= link_to "SignOut", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              <% else %>
+                <%= link_to 'SignIn', new_user_session_path, class: 'nav-link' %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <% if !user_signed_in? %>
+              <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
+            <% end %>
+          </li> 
+        </ul>
+      </div>  
+    </nav>
+  </div>
+</header>

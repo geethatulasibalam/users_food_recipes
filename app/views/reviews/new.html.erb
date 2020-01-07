@@ -1,0 +1,44 @@
+<div>
+	<%= render partial: 'dishes/header_two' %>
+</div>
+<% unless flash.empty? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        <% type = f[0].to_s %>
+        toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+    </script>
+<% end %>
+<div class="container">
+	<div class="review-form-container">
+		<div class="heading">
+			<h4>Post Review</h4>
+		</div>
+		<hr width="100%">
+		<div class="review-form">
+			<%= form_for @review, url: dish_reviews_path  do |f| %>
+					<div id='rating-form' class='form-group'>
+						<label class="rating">Rating</label>
+					</div>
+					<div class="row form-group">
+						<div class="col-md-2">
+							<%=f.label :review %>
+						</div>
+						<div class="col-md-10">
+							<%=f.text_area :review,rows:3,maxlength:200,class: 'form-control', validate: { presence: true }%>
+						<div class="error-text"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 d-flex justify-content-between">
+							<%= link_to 'Cancel',{:controller => "dishes", :action => "show",:id=>params[:dish_id]},class: 'btn cancel-btn' %>
+							<%=f.submit 'Save',class: 'btn success-btn'	%>
+						</div>
+					</div>
+			<% end %>
+		</div>
+	</div>
+</div>	
+<script type="text/javascript">
+	Ratings();
+</script>

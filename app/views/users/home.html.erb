@@ -1,0 +1,18 @@
+<div class="home-container">
+	<div class="row">
+		<p><%= notice %></p>
+		<p><%= alert %></p>
+	</div>
+  <div class="row welcomerow center">
+    <p class="welcome">Hi,Welcome</p>
+  </div>
+  <div class="row btns">
+    <div>
+      <%= link_to "SignUp", new_user_registration_path, class: "btn btn-lg btn-warning btn-signup" %>
+    </div>
+    <div>
+      <%= link_to 'SignIn', new_user_session_path, class: 'btn btn-lg btn-info btn-signin' %>
+    </div>
+  </div>
+</div>
+ 
